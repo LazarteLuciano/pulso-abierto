@@ -4,8 +4,8 @@ Aplicación web que consulta el precio actual de **Bitcoin, Ethereum y Solana** 
 
 Es la versión final del proyecto de Programación Web (Actividad 4), construida de forma progresiva desde el Módulo 1.
 
-- **Aplicación publicada (Vercel):** https://PENDIENTE.vercel.app
-- **Repositorio (GitHub):** https://github.com/PENDIENTE/pulso-abierto
+- **Aplicación publicada (Vercel):** https://pulso-abierto-ochre.vercel.app/
+- **Repositorio (GitHub):** https://github.com/LazarteLuciano/pulso-abierto
 - **Versión:** 1.0.0
 
 ## Tecnologías principales
@@ -29,7 +29,7 @@ Es la versión final del proyecto de Programación Web (Actividad 4), construida
 ## Instalación
 
 ```bash
-git clone https://github.com/PENDIENTE/pulso-abierto.git
+git clone https://github.com/LazarteLuciano/pulso-abierto.git
 cd pulso-abierto
 npm install
 ```
@@ -100,10 +100,11 @@ Pasos para publicar:
 
 1. Ejecutar `npm run test`, `npm run lint` y `npm run build`, y revisar el resultado con `npm run preview`.
 2. Hacer commit y `git push` a la rama `main` de GitHub.
-3. En Vercel: **Add New… → Project**, importar el repositorio `pulso-abierto` y comprobar que tome los valores de la tabla (no hay variables para cargar). Presionar **Deploy**.
-4. Abrir la URL de producción y repetir los recorridos principales: consulta, detalle, acceso directo y recarga de un detalle, favoritos, formulario y vista móvil.
+3. En https://vercel.com/new, ingresar con **Continue with GitHub** y darle a la app de Vercel acceso al repositorio `pulso-abierto` (**Only select repositories**).
+4. Presionar **Import** junto a `pulso-abierto` y comprobar que la configuración coincida con la tabla: preset Vite, `npm run build`, salida `dist`, Root Directory `./` y sin variables de entorno. Presionar **Deploy**.
+5. Cuando el despliegue queda listo, copiar el dominio de producción (sección **Domains** del proyecto) y repetir en esa URL los recorridos principales: consulta, detalle, acceso directo y recarga de un detalle, favoritos, formulario y vista móvil.
 
-Cada `git push` a `main` genera automáticamente un nuevo despliegue de producción, asociado a ese commit en el panel de Vercel.
+Cada `git push` a `main` genera automáticamente un nuevo despliegue de producción, asociado a ese commit en el panel de Vercel; el dominio de producción no cambia.
 
 ## Rutas
 
@@ -188,8 +189,18 @@ Además de la mejora anterior, para publicar se agregaron `vercel.json` (configu
 
 ## Verificación final
 
-- **Pruebas ejecutadas:** PENDIENTE
-- **Build generado correctamente:** PENDIENTE
-- **Preview comprobado:** PENDIENTE
-- **Despliegue realizado:** PENDIENTE
-- **Fecha de verificación:** PENDIENTE
+- **Pruebas ejecutadas:** `npm run test` → 6 archivos y 19 pruebas aprobadas. `npm run lint` y `npm run typecheck` sin errores ni advertencias.
+- **Build generado correctamente:** `npm run build` sin errores; genera `dist/index.html`, `dist/favicon.svg` y en `dist/assets/` un archivo CSS y uno JS.
+- **Preview comprobado:** con `npm run preview` (http://localhost:4173/) funcionaron la validación del formulario, la consulta, los favoritos, el detalle (desde el listado, por acceso directo y al recargar) y la vista móvil, sin errores en la consola.
+- **Despliegue realizado:** producción en https://pulso-abierto-ochre.vercel.app/, generada desde la rama `main` (commit `43bc435`, versión 1.0.0). En la URL publicada comprobé:
+  - que la aplicación carga y la consulta a CoinGecko responde 200;
+  - que el formulario valida los datos incorrectos y filtra con datos válidos;
+  - el paso del listado al detalle y la vuelta conservando la búsqueda;
+  - el acceso directo y la recarga de `/criptomonedas/bitcoin` y `/criptomonedas/ethereum`;
+  - que los favoritos se conservan entre vistas y después de recargar;
+  - la vista móvil (375 px, una columna, sin desplazamiento horizontal) y la de escritorio;
+  - que no hay errores en la consola.
+
+  No apareció ningún problema exclusivo de la versión publicada: el 404 al recargar un detalle se previno con el rewrite de `vercel.json`. El commit posterior a `43bc435` solo actualiza este README con las URLs y esta verificación.
+
+- **Fecha de verificación:** 24/11/2026.
