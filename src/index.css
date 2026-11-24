@@ -1,0 +1,476 @@
+/* Estilos de la Actividad 1, adaptados a la estructura de React. */
+
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #1b2333;
+  --muted: #4f5b70;
+  --primary: #1f4fd1;
+  --primary-dark: #163a9c;
+  --border: #d5dbe7;
+  --focus: #ff9f1c;
+
+  --info-bg: #eaf1ff;
+  --info-border: #1f4fd1;
+  --load-bg: #fff6e0;
+  --load-border: #b07800;
+  --ok-bg: #e6f6ec;
+  --ok-border: #1e7a3c;
+  --empty-bg: #f0f0f3;
+  --empty-border: #5c6170;
+  --err-bg: #fdeaea;
+  --err-border: #b3261e;
+  --star: #9a6700;
+
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* React monta la aplicación dentro de #root: ahí va el diseño en columna. */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+main:focus {
+  outline: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Enlace para saltar al contenido: aparece solo al recibir el foco con el teclado. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 10;
+  background: var(--surface);
+  color: var(--primary-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+.site-header {
+  background: linear-gradient(135deg, #10203f, #1f4fd1);
+  color: #fff;
+  padding-block: 2rem;
+}
+.site-header h1 {
+  margin: 0 0 0.25rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+.site-header__desc {
+  margin: 0;
+  max-width: 60ch;
+  color: #dce6ff;
+}
+/* Contador de favoritas (estado global, visible desde cualquier página). */
+.site-header__favoritas {
+  display: inline-block;
+  margin: 0.75rem 0 0;
+  padding: 0.2rem 0.75rem;
+  border: 1px solid #ffd27a;
+  border-radius: 999px;
+  color: #fff;
+}
+.site-header__favoritas span {
+  color: #ffd27a;
+}
+
+main {
+  flex: 1;
+  display: grid;
+  gap: 1.25rem;
+  padding-block: 1.5rem;
+  align-content: start;
+}
+
+@media (min-width: 768px) {
+  main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  main > section:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  min-width: 0;
+}
+.panel h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+.panel > p {
+  margin: 0 0 0.75rem;
+}
+
+/* ---------- Formulario ---------- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.campo label {
+  font-weight: 600;
+}
+.campo__opcional {
+  font-weight: 400;
+  color: var(--muted);
+}
+.campo__ayuda {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.campo input,
+.campo select {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 0.5rem;
+  width: 100%;
+}
+.campo input:hover,
+.campo select:hover {
+  border-color: var(--muted);
+}
+/* Campo con error: además del color cambia el estilo del borde y aparece un mensaje con ícono. */
+.campo [aria-invalid='true'] {
+  border-color: var(--err-border);
+  border-style: dashed;
+  background: var(--err-bg);
+}
+.campo__error {
+  margin: 0;
+  color: var(--err-border);
+  font-size: 0.95rem;
+}
+
+/* ---------- Botones y enlaces ---------- */
+
+.btn {
+  min-height: 44px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.btn--primary {
+  background: var(--primary);
+  color: #fff;
+}
+.btn--primary:hover:not([aria-disabled='true']) {
+  background: var(--primary-dark);
+}
+.btn--secondary {
+  background: #fff;
+  color: var(--err-border);
+  border-color: var(--err-border);
+  margin-top: 0.75rem;
+}
+.btn--secondary:hover {
+  background: var(--err-bg);
+}
+.btn--ghost {
+  background: #fff;
+  color: var(--text);
+  border-color: var(--border);
+  padding-inline: 0.875rem;
+}
+.btn--ghost:hover {
+  border-color: var(--star);
+}
+.btn--ghost.btn--activo {
+  border-color: var(--star);
+  background: #fff8e6;
+}
+.btn[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+a {
+  color: var(--primary-dark);
+}
+
+.link-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  font-weight: 600;
+}
+
+.enlaces {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.enlaces a {
+  display: inline-block;
+  padding-block: 0.6rem;
+}
+
+.otras p {
+  margin: 0;
+  font-weight: 600;
+}
+.otras .enlaces {
+  margin: 0;
+}
+
+/* ---------- Estados ---------- */
+
+.status {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.875rem 1rem;
+  border-radius: 0.5rem;
+  border-left: 6px solid;
+  margin-bottom: 0.75rem;
+}
+.estado .status {
+  margin-bottom: 0;
+}
+.status__icon {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+.status__text {
+  margin: 0;
+}
+.status--inicial {
+  background: var(--info-bg);
+  border-color: var(--info-border);
+}
+.status--carga {
+  background: var(--load-bg);
+  border-color: var(--load-border);
+  border-left-style: dashed;
+}
+.status--carga .status__icon {
+  animation: pulso 1s ease-in-out infinite;
+}
+.status--resultado {
+  background: var(--ok-bg);
+  border-color: var(--ok-border);
+}
+.status--vacio {
+  background: var(--empty-bg);
+  border-color: var(--empty-border);
+  border-left-style: dotted;
+}
+.status--error {
+  background: var(--err-bg);
+  border-color: var(--err-border);
+  border-left-style: double;
+}
+
+@keyframes pulso {
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .status--carga .status__icon {
+    animation: none;
+  }
+}
+
+/* ---------- Tarjetas ---------- */
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+.cards > li {
+  display: flex;
+  min-width: 0;
+}
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-top: 6px solid var(--primary);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: #fbfcff;
+  min-width: 0;
+}
+.card--bitcoin {
+  border-top-color: #f7931a;
+}
+.card--ethereum {
+  border-top-color: #627eea;
+}
+.card--solana {
+  border-top-color: #14b88a;
+}
+/* Tarjeta favorita: borde más grueso + insignia con texto (no solo color). */
+.card--favorita {
+  border-width: 2px;
+  border-top-width: 6px;
+  border-right-color: var(--star);
+  border-bottom-color: var(--star);
+  border-left-color: var(--star);
+  background: #fffdf5;
+}
+.card__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.card__title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.card__badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--star);
+  border: 1px solid var(--star);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  background: #fff8e6;
+}
+.card__symbol {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.card__price {
+  margin: 0.5rem 0 0.25rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.card__meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+.card__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+.card__actions {
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+/* Datos adicionales en el detalle. */
+.datos {
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}
+.datos div {
+  border-top: 1px solid var(--border);
+  padding-top: 0.5rem;
+}
+.datos dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.datos dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+code {
+  background: var(--empty-bg);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+/* ---------- Pie ---------- */
+
+.site-footer {
+  background: #10203f;
+  color: #dce6ff;
+  padding-block: 1rem;
+  font-size: 0.9rem;
+}
+.site-footer p {
+  margin: 0;
+}
+.site-footer a {
+  color: #fff;
+}

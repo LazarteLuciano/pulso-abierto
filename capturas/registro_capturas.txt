@@ -1,0 +1,32 @@
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+INICIO  localStorage[pulso-abierto:favoritos] = null
+ANTES DE RECARGAR  ★ Favoritas: 2  localStorage = {"state":{"favoritos":["bitcoin","solana"]},"version":0}
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+DESPUÉS DE RECARGAR  ★ Favoritas: 2  localStorage = {"state":{"favoritos":["bitcoin","solana"]},"version":0}
+  claves en localStorage: ["pulso-abierto:favoritos"]
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true
+DETALLE SOLANA  ★ Favoritas: 2
+DESMARCAR EN DETALLE  ★ Favoritas: 1  localStorage = {"state":{"favoritos":["bitcoin"]},"version":0}
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true
+DESPUÉS DE RECARGAR EL DETALLE  ★ Favoritas: 1  localStorage = {"state":{"favoritos":["bitcoin"]},"version":0}
+  [red] GET https://api.coingecko.com/api/v3/simple/precio-inexistente?ids=bitcoin,ethereum,solana&vs_currencies=usd
+  [red] GET https://api.coingecko.com/api/v3/simple/precio-inexistente?ids=bitcoin,ethereum,solana&vs_currencies=usd
+  [consola error] Access to fetch at 'https://api.coingecko.com/api/v3/simple/precio-inexistente?ids=bitcoin,ethereum,solana&vs_currencies=usd' from origin 'http://localhost:5173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+  [consola error] Failed to load resource: net::ERR_FAILED
+  [consola error] Access to fetch at 'https://api.coingecko.com/api/v3/simple/precio-inexistente?ids=bitcoin,ethereum,solana&vs_currencies=usd' from origin 'http://localhost:5173' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+  [consola error] Failed to load resource: net::ERR_FAILED
+ERROR SIMULADO  localStorage = {"state":{"favoritos":["bitcoin"]},"version":0}
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+DIAGNÓSTICO  se guarda a mano: {"state":{"favoritos":"bitcoin"},"version":0}
+  [consola warning] [favoritos] Se descartó el valor guardado: no tiene el formato esperado. {favoritos: bitcoin}
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+  [red] GET https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd
+DIAGNÓSTICO (después de la corrección)  ★ Favoritas: 0
+DIAGNÓSTICO  al marcar Bitcoin: ★ Favoritas: 1  localStorage = {"state":{"favoritos":["bitcoin"]},"version":0}
