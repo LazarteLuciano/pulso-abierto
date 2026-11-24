@@ -43,7 +43,7 @@ export default function App() {
               API pública de CoinGecko
               <span className="visually-hidden"> (se abre en una pestaña nueva)</span>
             </a>
-            . Prototipo académico — Programación Web, Actividad 3.
+            . Prototipo académico — Programación Web, Actividad 4.
           </p>
         </div>
       </footer>
