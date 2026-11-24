@@ -1,4 +1,5 @@
 import { Link, useLocation, useParams } from 'react-router';
+import { EnlacesMonedas } from '../components/EnlacesMonedas';
 import { EstadoConsulta } from '../components/EstadoConsulta';
 import { TarjetaCripto } from '../components/TarjetaCripto';
 import { buscarMoneda, MONEDAS } from '../data/monedas';
@@ -61,15 +62,7 @@ export function PaginaDetalle() {
             </p>
           </div>
           <p>Podés ver el detalle de alguna de estas:</p>
-          <ul className="enlaces">
-            {MONEDAS.map((otra) => (
-              <li key={otra.id}>
-                <Link to={`/criptomonedas/${otra.id}`}>
-                  {otra.nombre} ({otra.simbolo})
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <EnlacesMonedas monedas={MONEDAS} />
           <Link className="link-volver" to="/">
             <span aria-hidden="true">←</span> Ir a la consulta de precios
           </Link>
@@ -114,15 +107,8 @@ export function PaginaDetalle() {
 
         <nav aria-label="Otras criptomonedas" className="otras">
           <p>Ver otra criptomoneda:</p>
-          <ul className="enlaces">
-            {otras.map((otra) => (
-              <li key={otra.id}>
-                <Link to={`/criptomonedas/${otra.id}`} state={location.state}>
-                  {otra.nombre} ({otra.simbolo})
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {/* Se reenvía el estado para conservar la búsqueda de origen al cambiar de moneda. */}
+          <EnlacesMonedas monedas={otras} state={location.state} />
         </nav>
       </section>
 
